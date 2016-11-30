@@ -8,6 +8,6 @@ import com.franciscolopes.pacotes.dominio.Hotel;
 
 
 @Repository
-public interface HotelRepositorio extends JpaRepository<Hotel, Integer> {
+public interface HotelRepositorio extends JpaRepository<Hotel, Integer>, HotelRepositorioCustom {
 
 }

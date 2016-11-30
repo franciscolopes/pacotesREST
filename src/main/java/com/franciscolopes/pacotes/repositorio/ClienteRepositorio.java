@@ -8,6 +8,6 @@ import com.franciscolopes.pacotes.dominio.Cliente;
 
 
 @Repository
-public interface ClienteRepositorio extends JpaRepository<Cliente, Integer>  {
+public interface ClienteRepositorio extends JpaRepository<Cliente, Integer>, ClienteRepositorioCustom  {
 
 }
