@@ -14,49 +14,51 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.franciscolopes.pacotes.dominio.Cliente;
-import com.franciscolopes.pacotes.repositorio.ClienteRepositorio;
+import com.franciscolopes.pacotes.servico.ClienteServico;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClienteRecurso {
 	
+	
+	
+	
+	
 	@Autowired
-	private ClienteRepositorio repo;
+	private ClienteServico cs;
 
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Cliente>> todos() {
-		return ResponseEntity.status(HttpStatus.OK).body(repo.findAll());
+		List<Cliente> lista = cs.buscarTodosOrdenadosPorNome();
+		return ResponseEntity.status(HttpStatus.OK).body(lista);
 	}
 
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable("id") Integer id) {
-		Cliente cli = repo.findOne(id);
-		if (cli == null) {
-			return ResponseEntity.notFound().build();
-		}
+		Cliente cli = cs.buscar(id);
 		return ResponseEntity.status(HttpStatus.OK).body(cli);
 	}
 
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> criar(@RequestBody Cliente cliente) {
-		cliente = repo.save(cliente);
+		cliente = cs.inserir(cliente);
 		URI uri = getUri("/{id}", cliente.getCodCliente());
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deletar(@PathVariable("id") Integer id) {
-		repo.delete(id);
+		cs.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Cliente cliente, @PathVariable("id") Integer id) {
 		cliente.setCodCliente(id);
-		repo.save(cliente);
+		cliente = cs.atualizar(cliente);
 		return ResponseEntity.noContent().build();
 	}
 	

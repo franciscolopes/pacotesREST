@@ -76,14 +76,16 @@ public class ClienteServico {
 	}
 	
 
-	public void excluir(Cliente x) throws ServicoException {
+	public void excluir(int cod) throws ServicoException {
 			
-			
-			x = repo.findOne(x.getCodCliente());
-			if (!x.getContratos().isEmpty()) {
-				throw new ServicoException("Exclusão não permitida: este cliente possui contratos!", 2);
-			
-			}
+		Cliente cli = repo.findOne(cod);
+		if (cli == null) {
+			throw new NaoEncontradoException("Cliente não encontrado!", 1);
+		}
+		if (!cli.getContratos().isEmpty()) {
+			throw new ServicoException("Exclusão não permitida: este cliente possui contratos!", 2);
+		}
+		repo.delete(cli);
 			
 	}
 	
