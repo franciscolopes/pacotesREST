@@ -35,16 +35,13 @@ public class ClienteRecurso {
 		return ResponseEntity.status(HttpStatus.OK).body(lista);
 	}
 
-	/*
 	
-	@RequestMapping(method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/busca", method = RequestMethod.GET)
 	public ResponseEntity<List<Cliente>> nome(@RequestParam(value="trecho") String trecho) {
 		List<Cliente> lista = cs.buscarPorNome(trecho);
 		return ResponseEntity.status(HttpStatus.OK).body(lista);
-	}*/
-	
-	
-	
+	}
 	
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -23,13 +23,13 @@ public class HotelRecurso {
 	@Autowired
 	private HotelServico hs;
 
-	/*
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Hotel>> nomes(@RequestParam(value="nome") String nome, @RequestParam(value="diariaMin") BigDecimal diariaMin, @RequestParam(value="diariaMax") BigDecimal diariaMax) {
 		List<Hotel> lista = hs.buscaPorNomeOrdenadoPorPreco(nome, diariaMin, diariaMax);
 		return ResponseEntity.status(HttpStatus.OK).body(lista);
 
-	}*/
+	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable("id") Integer id) {
@@ -37,12 +37,12 @@ public class HotelRecurso {
 		return ResponseEntity.status(HttpStatus.OK).body(hotel);
 	}
 	
-	
+	/*
 	@RequestMapping(method = RequestMethod.GET)
 	public String todos(){
 		return "Executou o metodo todos";
 	}
-
+*/
 	
 	
 	
