@@ -1,5 +1,6 @@
 package com.franciscolopes.pacotes.recursos;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.franciscolopes.pacotes.dominio.Cliente;
 import com.franciscolopes.pacotes.dominio.Hotel;
 import com.franciscolopes.pacotes.servico.HotelServico;
 
@@ -24,14 +25,11 @@ public class HotelRecurso {
 
 	/*
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Cliente>> todos() {
-		List<Hotel> lista = hs.buscaPorNomeOrdenadoPorPreco();
+	public ResponseEntity<List<Hotel>> nomes(@RequestParam(value="nome") String nome, @RequestParam(value="diariaMin") BigDecimal diariaMin, @RequestParam(value="diariaMax") BigDecimal diariaMax) {
+		List<Hotel> lista = hs.buscaPorNomeOrdenadoPorPreco(nome, diariaMin, diariaMax);
 		return ResponseEntity.status(HttpStatus.OK).body(lista);
+
 	}*/
-	
-	
-	
-	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable("id") Integer id) {
