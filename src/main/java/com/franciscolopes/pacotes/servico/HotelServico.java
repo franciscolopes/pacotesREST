@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.franciscolopes.pacotes.dominio.Hotel;
 import com.franciscolopes.pacotes.repositorio.HotelRepositorio;
+import com.franciscolopes.pacotes.servico.excecoes.NaoEncontradoException;
 
 @Service
 public class HotelServico {
@@ -23,6 +24,12 @@ public class HotelServico {
 
 	}
 	
-	
+	public Hotel buscar(int cod){
+		Hotel hotel = repo.findOne(cod);
+		if (hotel == null) {
+			throw new NaoEncontradoException("Hotel não encontrado!", 1);
+		}
+		return hotel;
+	}
 	
 }
